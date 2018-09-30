@@ -10,6 +10,7 @@ This software can connect to BDS, pmmp with offlinemode.
 * git clone https://github.com/hmy2001/MCBEClient.git
 * cd MCBEClient
 * mvn package
+* cd target
 * java -jar MCBEClient-1.0-SNAPSHOT-jar-with-dependencies.jar
 
 ## Features implemented
