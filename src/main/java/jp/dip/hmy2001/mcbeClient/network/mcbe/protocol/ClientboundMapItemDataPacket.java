@@ -108,16 +108,6 @@ public class ClientboundMapItemDataPacket extends GamePacket {
             System.out.println("A: " + A);
         }
 
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream("ClientBoundMapItemData/" + Instant.now().getEpochSecond() + "_ClientBoundMapItemData.dat");
-
-            fileOutputStream.write(array());
-            fileOutputStream.flush();
-            fileOutputStream.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
         System.out.println("remaining: " + remaining() + "\n");
     }
 
