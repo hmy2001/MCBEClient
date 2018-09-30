@@ -22,3 +22,4 @@ This software can connect to BDS, pmmp with offlinemode.
 
 ## TODO
 * This client cannot connect to some server
+* refactoring
