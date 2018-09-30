@@ -15,6 +15,8 @@ public interface ProtocolInfo {
 
     byte MOVE_PLAYER_PACKET = (byte) 0x13;
 
+    byte MOB_EQUIPMENT_PACKET = (byte) 0x1f;
+
     byte INVENTORY_CONTENT_PACKET = (byte) 0x31;
 
     byte CLIENTBOUND_MAP_ITEM_DATA_PACKET = (byte) 0x43;

@@ -163,6 +163,13 @@ public class ClientListener implements RakNetClientListener{
 
                         sendBatchPacket(session, sendPk);
                     break;}
+                    case ProtocolInfo.MOB_EQUIPMENT_PACKET:{
+                        MobEquipmentPacket receivePk = new MobEquipmentPacket();
+                        receivePk.setBuffer(pk);
+                        receivePk.decode();
+
+
+                    break;}
                     case ProtocolInfo.START_GAME_PACKET:{
                         System.out.println("Start Game Packet");
 

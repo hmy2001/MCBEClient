@@ -23,6 +23,14 @@ public class ClientboundMapItemDataPacket extends GamePacket {
         mapId = readVarLong();
         type = readUnsignedVarInt();
         dimensionId = readByte();
+
+        if((type & 0x08) != 0){//eid
+            int eidCount = readUnsignedVarInt();
+            for (int i = 0; i < eidCount; eidCount++){
+                readVarLong();
+            }
+        }
+
         scale = readByte();
 
         /*System.out.println("mapId: " + mapId);
@@ -132,8 +140,6 @@ public class ClientboundMapItemDataPacket extends GamePacket {
                 e.printStackTrace();
             }
         }
-
-        System.out.println("remaining: " + remaining() + "\n");
     }
 
 }
