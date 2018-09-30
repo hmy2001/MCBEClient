@@ -91,18 +91,6 @@ public class ClientboundMapItemDataPacket extends GamePacket {
 
             int count = readUnsignedVarInt();
             System.out.println("count: " + count);
-
-            int color = readUnsignedVarInt();
-
-            int R = color & 0xff;
-            int G = (color >> 8) & 0xff;
-            int B = (color >> 16) & 0xff;
-            int A = (color >> 24) & 0xff;
-            System.out.println("color: " + color);
-            System.out.println("R: " + R);
-            System.out.println("G: " + G);
-            System.out.println("B: " + B);
-            System.out.println("A: " + A);
         }
 
         System.out.println("remaining: " + remaining() + "\n");

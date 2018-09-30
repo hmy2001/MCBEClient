@@ -238,7 +238,7 @@ public class ClientListener implements RakNetClientListener{
         extraData.displayName = this.username;
         extraData.identity = clientUUID;
 
-        System.out.println(username);
+        System.out.println("displayName: " + username);
 
         ChainData chainData = new ChainData();
         chainData.nbf = Instant.now().getEpochSecond();
