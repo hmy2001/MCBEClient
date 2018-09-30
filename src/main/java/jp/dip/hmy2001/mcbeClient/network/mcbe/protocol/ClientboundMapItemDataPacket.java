@@ -2,6 +2,10 @@ package jp.dip.hmy2001.mcbeClient.network.mcbe.protocol;
 
 import jp.dip.hmy2001.mcbeClient.network.mcbe.GamePacket;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
 public class ClientboundMapItemDataPacket extends GamePacket {
     final byte NETWORK_ID = ProtocolInfo.CLIENTBOUND_MAP_ITEM_DATA_PACKET;
 
@@ -9,6 +13,7 @@ public class ClientboundMapItemDataPacket extends GamePacket {
     public int type;
     public int dimensionId;
     public int scale;
+    public int[][] colors;
 
     public byte getPacketId() {
         return NETWORK_ID;
@@ -91,6 +96,39 @@ public class ClientboundMapItemDataPacket extends GamePacket {
 
             int count = readUnsignedVarInt();
             System.out.println("count: " + count);
+
+            colors = new int[height][width];
+            for(int y = 0; y < height; ++y){
+                for(int x = 0; x < width; ++x){
+                    colors[y][x] = readUnsignedVarInt();
+                }
+            }
+
+            try{
+                BufferedImage bufferedImage;
+                if(new File(mapId + ".png").exists()){
+                    bufferedImage = ImageIO.read(new File(mapId + ".png"));
+                }else{
+                    bufferedImage = new BufferedImage(128, 128, BufferedImage.TYPE_4BYTE_ABGR);
+                }
+
+                for(int y = yOffset; y < height; ++y){
+                    for(int x = xOffset; x < width; ++x){
+                        int color = colors[y][x];
+                        int R = color & 0xff;
+                        int G = (color >> 8) & 0xff;
+                        int B = (color >> 16) & 0xff;
+                        int A = (color >> 24) & 0xff;
+                        int drawRGBA = A << 24 | R << 16 | G << 8 | B;
+
+                        bufferedImage.setRGB(x, y, drawRGBA);
+                    }
+                }
+
+                ImageIO.write(bufferedImage, "png", new File(mapId +".png"));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
 
         System.out.println("remaining: " + remaining() + "\n");
