@@ -11,14 +11,14 @@ public class ClientSession extends Thread{
     private int serverPort;
     private RakNetClient rakNetClient;
 
-    public ClientSession(MCBEClient client, InetAddress serverAddress, int serverPort, String clientUUID){
+    public ClientSession(MCBEClient client, InetAddress serverAddress, int serverPort, String username, String clientUUID){
         this.client = client;
         this.serverAddress = serverAddress;
         this.serverPort = serverPort;
 
         rakNetClient = new RakNetClient();
         rakNetClient.setMaximumTransferUnits(1400);
-        rakNetClient.addListener(new ClientListener(client, this, clientUUID));
+        rakNetClient.addListener(new ClientListener(client, this, username, clientUUID));
     }
 
     public String getServerAddress() {

@@ -22,14 +22,16 @@ import java.util.zip.Deflater;
 public class ClientListener implements RakNetClientListener{
     private MCBEClient client;
     private ClientSession clientSession;
+    private String username;
     private String clientUUID;
     private boolean isEncryption = false;
     private int entityUniqueId;
     private int entityRuntimeId;
 
-    public ClientListener(MCBEClient client, ClientSession clientSession, String clientUUID){
+    public ClientListener(MCBEClient client, ClientSession clientSession, String username, String clientUUID){
         this.client = client;
         this.clientSession = clientSession;
+        this.username = username;
         this.clientUUID = clientUUID;
     }
 
@@ -233,7 +235,7 @@ public class ClientListener implements RakNetClientListener{
     private String createChainData(){
         ExtraData extraData = new ExtraData();
         extraData.XUID = "";
-        extraData.displayName = "Hmy2001Sub";
+        extraData.displayName = username;
         extraData.identity = clientUUID;
 
         ChainData chainData = new ChainData();

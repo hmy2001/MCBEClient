@@ -34,8 +34,9 @@ public class Config {
             UUID uuid = UUID.nameUUIDFromBytes(bytes);
             System.out.println(uuid);
 
-            properties.setProperty("serverAddress", "play.lbsg.net");
+            properties.setProperty("serverAddress", "localhost");
             properties.setProperty("serverPort", "19132");
+            properties.setProperty("username", "Hmy2001Sub");
             properties.setProperty("clientUUID", uuid.toString());
 
             properties.store(new FileOutputStream(getFilePath()));

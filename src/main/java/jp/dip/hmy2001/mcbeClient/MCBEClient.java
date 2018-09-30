@@ -14,6 +14,7 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 public class MCBEClient {
+    private String username;
     private String clientUUID;
     private SecureRandom secureRandom;
     private PrivateKey privateKey;
@@ -23,7 +24,8 @@ public class MCBEClient {
     private ClientSession clientSession;
     private NetworkCipher networkCipher;
 
-    public MCBEClient(String serverAddress, int serverPort, String clientUUID){
+    public MCBEClient(String serverAddress, int serverPort, String username, String clientUUID){
+        this.username = username;
         this.clientUUID = clientUUID;
         generatePrivateKey();
 
@@ -40,7 +42,7 @@ public class MCBEClient {
     }
 
     private void createClientSession(){
-        clientSession = new ClientSession(this, this.serverAddress, this.serverPort, clientUUID);
+        clientSession = new ClientSession(this, this.serverAddress, this.serverPort, username, clientUUID);
         clientSession.start();
     }
 
