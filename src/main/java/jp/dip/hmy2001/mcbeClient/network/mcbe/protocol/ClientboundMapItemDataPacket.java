@@ -25,40 +25,40 @@ public class ClientboundMapItemDataPacket extends GamePacket {
         dimensionId = readByte();
         scale = readByte();
 
-        System.out.println("mapId: " + mapId);
+        /*System.out.println("mapId: " + mapId);
         System.out.println("type: " + type);
         System.out.println("dimensionId: " + dimensionId);
-        System.out.println("scale: " + scale);
+        System.out.println("scale: " + scale);*/
 
         if((type & 0x04) != 0){//Decorations
             int trackedEntityCount = readUnsignedVarInt();
-            System.out.println("TrackedEntityCount: " + trackedEntityCount);
+            //System.out.println("TrackedEntityCount: " + trackedEntityCount);
 
             for(int i = 0; i < trackedEntityCount; i++){
                 int objectType = readIntLE();
 
-                System.out.println("ObjectType: " + objectType);
+                //System.out.println("ObjectType: " + objectType);
                 if(objectType == 0){
                     int objectEntityId = readVarInt();
 
-                    System.out.println("EntityId: " + objectEntityId);
+                    //System.out.println("EntityId: " + objectEntityId);
                 }else{
                     int x = readVarInt();
                     int y = readUnsignedVarInt();
                     int z = readVarInt();
 
-                    System.out.println("x: " + x);
-                    System.out.println("y: " + y);
-                    System.out.println("z: " + z);
+                    //System.out.println("x: " + x);
+                    //System.out.println("y: " + y);
+                    //System.out.println("z: " + z);
                 }
             }
 
             int decorationCount = readUnsignedVarInt();
 
-            System.out.println("DecorationCount: " + decorationCount);
+            //System.out.println("DecorationCount: " + decorationCount);
             for(int i = 0; i < decorationCount; i++){
                 int decorationType = readByte();
-                int decorationRotion = readByte();
+                int decorationRotation = readByte();
                 int xOffset = readByte();
                 int yOffset = readByte();
 
@@ -70,8 +70,8 @@ public class ClientboundMapItemDataPacket extends GamePacket {
                 int B = (color >> 16) & 0xff;
                 int A = (color >> 24) & 0xff;
 
-                System.out.println("decorationType: " + decorationType);
-                System.out.println("decorationRotion: " + decorationRotion);
+                /*System.out.println("decorationType: " + decorationType);
+                System.out.println("decorationRotation: " + decorationRotation);
                 System.out.println("xOffset: " + xOffset);
                 System.out.println("yOffset: " + yOffset);
                 System.out.println("decorationName: " + decorationName);
@@ -79,7 +79,7 @@ public class ClientboundMapItemDataPacket extends GamePacket {
                 System.out.println("R: " + R);
                 System.out.println("G: " + G);
                 System.out.println("B: " + B);
-                System.out.println("A: " + A);
+                System.out.println("A: " + A);*/
             }
         }
 
@@ -89,13 +89,13 @@ public class ClientboundMapItemDataPacket extends GamePacket {
             int xOffset = readVarInt();
             int yOffset = readVarInt();
 
-            System.out.println("width: " + width);
+            /*System.out.println("width: " + width);
             System.out.println("height: " + height);
             System.out.println("xOffset: " + xOffset);
-            System.out.println("yOffset: " + yOffset);
+            System.out.println("yOffset: " + yOffset);*/
 
             int count = readUnsignedVarInt();
-            System.out.println("count: " + count);
+            //System.out.println("count: " + count);
 
             colors = new int[height][width];
             for(int y = 0; y < height; ++y){
@@ -112,8 +112,10 @@ public class ClientboundMapItemDataPacket extends GamePacket {
                     bufferedImage = new BufferedImage(128, 128, BufferedImage.TYPE_4BYTE_ABGR);
                 }
 
-                for(int y = yOffset; y < height; ++y){
-                    for(int x = xOffset; x < width; ++x){
+                for(int y = 0; y < height; ++y){
+                    int drawY = y + yOffset;
+                    for(int x = 0; x < width; ++x){
+                        int drawX = x + xOffset;
                         int color = colors[y][x];
                         int R = color & 0xff;
                         int G = (color >> 8) & 0xff;
@@ -121,7 +123,7 @@ public class ClientboundMapItemDataPacket extends GamePacket {
                         int A = (color >> 24) & 0xff;
                         int drawRGBA = A << 24 | R << 16 | G << 8 | B;
 
-                        bufferedImage.setRGB(x, y, drawRGBA);
+                        bufferedImage.setRGB(drawX, drawY, drawRGBA);
                     }
                 }
 
