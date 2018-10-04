@@ -42,7 +42,7 @@ public class Main {
             case "shutdown":
             case "stop":
                 shutdown();
-                break;
+            break;
         }
     }
 

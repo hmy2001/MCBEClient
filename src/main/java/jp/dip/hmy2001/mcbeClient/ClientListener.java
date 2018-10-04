@@ -33,6 +33,10 @@ public class ClientListener implements RakNetClientListener{
         this.clientSession = clientSession;
         this.username = username;
         this.clientUUID = clientUUID;
+
+        CommandReader.getInstance().stashLine();
+        System.out.println("displayName: " + username);
+        CommandReader.getInstance().unstashLine();
     }
 
     @Override
@@ -43,7 +47,6 @@ public class ClientListener implements RakNetClientListener{
 
         LoginPacket loginPacket = new LoginPacket();
         loginPacket.protocol = 282;
-
 
         HugeChainData hugeChainData = new HugeChainData();
         hugeChainData.chain = new String[]{client.createJwt(createChainData())};
@@ -168,7 +171,7 @@ public class ClientListener implements RakNetClientListener{
                         receivePk.setBuffer(pk);
                         receivePk.decode();
 
-
+                        System.out.println("MobEquipmentPacket: " + receivePk.entityRuntimeId);
                     break;}
                     case ProtocolInfo.START_GAME_PACKET:{
                         System.out.println("Start Game Packet");
@@ -180,6 +183,9 @@ public class ClientListener implements RakNetClientListener{
                         entityUniqueId = receivePk.entityUniqueId;
                         entityRuntimeId = receivePk.entityRuntimeId;
 
+                        System.out.println("clientUniqueId: " + entityUniqueId);
+                        System.out.println("clientRuntimeId: " + entityRuntimeId);
+
                         RequestChunkRadiusPacket sendPk = new RequestChunkRadiusPacket();
                         sendPk.radius = 8;
                         sendBatchPacket(session, sendPk);
@@ -188,14 +194,11 @@ public class ClientListener implements RakNetClientListener{
                         InventoryContentPacket receivePk = new InventoryContentPacket();
                         receivePk.setBuffer(pk);
                         receivePk.decode();
-
-
                     break;}
                     case ProtocolInfo.CLIENTBOUND_MAP_ITEM_DATA_PACKET:{
                         ClientboundMapItemDataPacket receivePk = new ClientboundMapItemDataPacket();
                         receivePk.setBuffer(pk);
                         receivePk.decode();
-
                     break;}
                 }
 
@@ -242,10 +245,8 @@ public class ClientListener implements RakNetClientListener{
     private String createChainData(){
         ExtraData extraData = new ExtraData();
         extraData.XUID = "";
-        extraData.displayName = this.username;
+        extraData.displayName = username;
         extraData.identity = clientUUID;
-
-        System.out.println("displayName: " + username);
 
         ChainData chainData = new ChainData();
         chainData.nbf = Instant.now().getEpochSecond();
