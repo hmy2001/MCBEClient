@@ -15,7 +15,7 @@ This software can connect to BDS, pmmp with offlinemode.
 
 ## Features implemented
 * Login with offline mode
-* The client can Connect to all server with offline
+* The client can connect to all server with offline mode
 
 ## Features not yet implemented
 * Analyze all packet
