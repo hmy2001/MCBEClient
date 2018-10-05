@@ -15,11 +15,11 @@ This software can connect to BDS, pmmp with offlinemode.
 
 ## Features implemented
 * Login with offline mode
+* The client can Connect to all server with offline
 
 ## Features not yet implemented
 * Analyze all packet
 * Login with Xbox Live
 
 ## TODO
-* This client cannot connect to some server
 * refactoring
