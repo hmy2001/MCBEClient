@@ -235,7 +235,7 @@ public class ClientListener implements RakNetClientListener{
 
         //System.out.println("batch: " + DatatypeConverter.printHexBinary(batchPacket.array()));
 
-        session.sendMessage(Reliability.RELIABLE_ORDERED, batchPacket);
+        session.sendMessage(Reliability.UNRELIABLE, batchPacket);
 
         CommandReader.getInstance().stashLine();
         System.out.println("Sent!!!");
