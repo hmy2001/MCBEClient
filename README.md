@@ -3,10 +3,12 @@
 This software can connect to BDS, pmmp with offlinemode.
 
 ## How to use
+<!--
 * git clone https://github.com/hmy2001/JRakNet.git
 * cd JRakNet
 * mvn install
 * cd ~/
+-->
 * git clone https://github.com/hmy2001/MCBEClient.git
 * cd MCBEClient
 * mvn package
