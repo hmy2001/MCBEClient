@@ -12,7 +12,7 @@ public class RequestChunkRadiusPacket extends GamePacket {
     }
 
     public void encodeBody(){
-        writeUnsignedVarInt(radius);
+        writeVarInt(radius);
     }
 
 }
