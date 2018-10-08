@@ -24,4 +24,4 @@ This software can connect to BDS, pmmp with offlinemode.
 * Login with Xbox Live
 
 ## TODO
-* refactoring
+* Refactoring

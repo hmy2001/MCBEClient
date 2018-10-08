@@ -176,11 +176,6 @@ public class MCBEClient {
         return "";
     }
 
-
-    /*
-    AES/CFB8/NoPadding
-     */
-
     public void shutdown(){
         clientSession.shutdown();
     }

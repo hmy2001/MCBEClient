@@ -6,13 +6,11 @@ import jp.dip.hmy2001.mcbeClient.utils.CommandReader;
 import java.net.*;
 
 public class ClientSession extends Thread{
-    private MCBEClient client;
     private InetAddress serverAddress;
     private int serverPort;
     private RakNetClient rakNetClient;
 
     public ClientSession(MCBEClient client, InetAddress serverAddress, int serverPort, String username, String clientUUID){
-        this.client = client;
         this.serverAddress = serverAddress;
         this.serverPort = serverPort;
 
@@ -34,16 +32,18 @@ public class ClientSession extends Thread{
             rakNetClient.connect(serverAddress, serverPort);
         }catch (Exception e){
             CommandReader.getInstance().stashLine();
+            System.out.println(e.getMessage());
             e.printStackTrace();
             CommandReader.getInstance().unstashLine();
         }
     }
 
     public void shutdown(){
-        if(rakNetClient.isConnected() || rakNetClient.isRunning()){//TODO: check Session
+        if(rakNetClient.isConnected()){
             rakNetClient.disconnect();
-            rakNetClient.shutdown();
         }
+
+        rakNetClient.shutdown();
     }
 
 }
