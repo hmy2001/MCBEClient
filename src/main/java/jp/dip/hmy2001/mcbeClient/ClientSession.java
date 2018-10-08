@@ -32,7 +32,6 @@ public class ClientSession extends Thread{
             rakNetClient.connect(serverAddress, serverPort);
         }catch (Exception e){
             CommandReader.getInstance().stashLine();
-            System.out.println(e.getMessage());
             e.printStackTrace();
             CommandReader.getInstance().unstashLine();
         }
