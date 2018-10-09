@@ -111,8 +111,6 @@ public class ClientListener implements RakNetClientListener{
                         receivePk.setBuffer(pk);
                         receivePk.decode();
 
-                        System.out.println("Play Status Packet: " + receivePk.status);
-
                         if(receivePk.status == 3){//Player Spawn
                             SetLocalPlayerAsInitializedPacket sendPk = new SetLocalPlayerAsInitializedPacket();
                             sendPk.entityRuntimeId = this.entityRuntimeId;
@@ -120,8 +118,6 @@ public class ClientListener implements RakNetClientListener{
                         }
                     break;}
                     case ProtocolInfo.SERVER_TO_CLIENT_HANDSHAKE_PACKET:{
-                        System.out.println("Server To Client Handshake Packet");
-
                         ServerToClientHandshakePacket receivePk = new ServerToClientHandshakePacket();
                         receivePk.setBuffer(pk);
                         receivePk.decode();
@@ -135,14 +131,12 @@ public class ClientListener implements RakNetClientListener{
                         client.generateAESKey(jwtHeader.x5u, saltData.salt);
                         isEncryption = true;
 
-                        System.out.println("enable Encryption!!!");
+                        System.out.println("Enable Encryption!!!");
 
                         ClientToServerHandshakePacket sendPk = new ClientToServerHandshakePacket();
                         sendBatchPacket(session, sendPk);
                     break;}
                     case ProtocolInfo.DISCONNECT_PACKET:{
-                        System.out.println("Disconnect Packet");
-
                         DisconnectPacket receivePk = new DisconnectPacket();
                         receivePk.setBuffer(pk);
                         receivePk.decode();
@@ -152,8 +146,6 @@ public class ClientListener implements RakNetClientListener{
                         }
                     break;}
                     case ProtocolInfo.RESOURCE_PACKS_INFO_PACKET:{
-                        System.out.println("Resource Packs Info Packet");
-
                         ResourcePackClientResponsePacket sendPk = new ResourcePackClientResponsePacket();
                         sendPk.status = 3;
 
@@ -169,12 +161,8 @@ public class ClientListener implements RakNetClientListener{
                         MobEquipmentPacket receivePk = new MobEquipmentPacket();
                         receivePk.setBuffer(pk);
                         receivePk.decode();
-
-                        System.out.println("MobEquipmentPacket: " + receivePk.entityRuntimeId);
                     break;}
                     case ProtocolInfo.START_GAME_PACKET:{
-                        System.out.println("Start Game Packet");
-
                         StartGamePacket receivePk = new StartGamePacket();
                         receivePk.setBuffer(pk);
                         receivePk.decode();
