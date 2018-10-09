@@ -9,8 +9,7 @@ import com.whirvis.jraknet.session.RakNetServerSession;
 import jp.dip.hmy2001.mcbeClient.network.mcbe.GamePacket;
 import jp.dip.hmy2001.mcbeClient.network.mcbe.json.*;
 import jp.dip.hmy2001.mcbeClient.network.mcbe.protocol.*;
-import jp.dip.hmy2001.mcbeClient.utils.BinaryStream;
-import jp.dip.hmy2001.mcbeClient.utils.CommandReader;
+import jp.dip.hmy2001.mcbeClient.utils.*;
 
 import javax.xml.bind.DatatypeConverter;
 import java.time.Instant;
@@ -197,6 +196,16 @@ public class ClientListener implements RakNetClientListener{
                     break;}
                     case ProtocolInfo.CLIENTBOUND_MAP_ITEM_DATA_PACKET:{
                         ClientboundMapItemDataPacket receivePk = new ClientboundMapItemDataPacket();
+                        receivePk.setBuffer(pk);
+                        receivePk.decode();
+                    break;}
+                    case ProtocolInfo.FULL_CHUNK_DATA_PACKET:{
+                        FullChunkDataPacket receivePk = new FullChunkDataPacket();
+                        receivePk.setBuffer(pk);
+                        receivePk.decode();
+                    break;}
+                    case ProtocolInfo.BOSS_EVENT_PACKET:{
+                        BossEventPacket receivePk = new BossEventPacket();
                         receivePk.setBuffer(pk);
                         receivePk.decode();
                     break;}
