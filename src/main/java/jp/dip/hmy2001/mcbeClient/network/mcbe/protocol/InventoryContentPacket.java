@@ -15,12 +15,8 @@ public class InventoryContentPacket extends GamePacket {
         windowId = readUnsignedVarInt();
         int count = readUnsignedVarInt();
 
-        if(windowId == 0){
-            System.out.println("ItemCount: " + count);
-
-            for(int i = 0; i < count; i++){
-                readSlot();
-            }
+        for(int i = 0; i < count; i++){
+            readSlot();
         }
     }
 
