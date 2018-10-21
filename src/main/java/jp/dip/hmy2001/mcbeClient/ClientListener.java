@@ -45,7 +45,7 @@ public class ClientListener implements RakNetClientListener{
         CommandReader.getInstance().unstashLine();
 
         LoginPacket loginPacket = new LoginPacket();
-        loginPacket.protocol = 282;
+        loginPacket.protocol = 291;
 
         HugeChainData hugeChainData = new HugeChainData();
         hugeChainData.chain = new String[]{client.createJwt(createChainData())};

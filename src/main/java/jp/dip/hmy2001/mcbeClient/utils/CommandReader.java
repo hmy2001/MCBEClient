@@ -64,11 +64,7 @@ public class CommandReader extends Thread{
     public void shutdown(){
         isRunning = false;
 
-        try {
-            reader.close();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        reader.close();
     }
 
     public void removePromptLine() {
