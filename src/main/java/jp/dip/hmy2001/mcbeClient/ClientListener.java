@@ -45,7 +45,7 @@ public class ClientListener implements RakNetClientListener{
         CommandReader.getInstance().unstashLine();
 
         LoginPacket loginPacket = new LoginPacket();
-        loginPacket.protocol = 291;
+        loginPacket.protocol = 291;//1.7.0, 1.7.1
 
         HugeChainData hugeChainData = new HugeChainData();
         hugeChainData.chain = new String[]{client.createJwt(createChainData())};
@@ -87,7 +87,7 @@ public class ClientListener implements RakNetClientListener{
                 decryptPayload[0] = (byte) 0xfe;
                 System.arraycopy(payload, 0, decryptPayload, 1, payload.length);
 
-               // System.out.println("decryptPayload: " + DatatypeConverter.printHexBinary(decryptPayload));
+                //System.out.println("decryptPayload: " + DatatypeConverter.printHexBinary(decryptPayload));
 
                 batchPacket.setBuffer(decryptPayload);
             }else{
