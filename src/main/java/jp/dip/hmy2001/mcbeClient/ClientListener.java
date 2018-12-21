@@ -216,11 +216,11 @@ public class ClientListener implements RakNetClientListener{
             batchPacket.isEncryption = true;
 
             byte[] output = new byte[100000];
-            Deflater compresser = new Deflater(Deflater.DEFLATED);
-            compresser.setInput(binaryStream.array());
-            compresser.finish();
-            int length = compresser.deflate(output);
-            compresser.end();
+            Deflater compressor = new Deflater(Deflater.DEFLATED);
+            compressor.setInput(binaryStream.array());
+            compressor.finish();
+            int length = compressor.deflate(output);
+            compressor.end();
 
             //System.out.println(DatatypeConverter.printHexBinary(Arrays.copyOf(output, length)));
 

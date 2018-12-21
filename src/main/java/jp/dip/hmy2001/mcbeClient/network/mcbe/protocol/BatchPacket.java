@@ -25,11 +25,11 @@ public class BatchPacket extends GamePacket {
             write(payload);
         }else{
             byte[] output = new byte[100000];
-            Deflater compresser = new Deflater(Deflater.DEFLATED);
-            compresser.setInput(payload);
-            compresser.finish();
-            int length = compresser.deflate(output);
-            compresser.end();
+            Deflater compressor = new Deflater(Deflater.DEFLATED);
+            compressor.setInput(payload);
+            compressor.finish();
+            int length = compressor.deflate(output);
+            compressor.end();
 
             write(Arrays.copyOf(output, length));
         }
@@ -43,12 +43,12 @@ public class BatchPacket extends GamePacket {
     public void decodeBody(){
         byte[] payload = new byte[1024 * 1024 * 64];
 
-        Inflater decompresser = new Inflater();
-        decompresser.setInput(read(remaining()));
+        Inflater decompressor = new Inflater();
+        decompressor.setInput(read(remaining()));
 
         try{
-            int length = decompresser.inflate(payload);
-            decompresser.end();
+            int length = decompressor.inflate(payload);
+            decompressor.end();
 
             this.payload = Arrays.copyOf(payload, length);
         }catch (Exception e){
