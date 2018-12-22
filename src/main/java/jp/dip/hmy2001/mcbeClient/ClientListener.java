@@ -11,7 +11,6 @@ import jp.dip.hmy2001.mcbeClient.network.mcbe.json.*;
 import jp.dip.hmy2001.mcbeClient.network.mcbe.protocol.*;
 import jp.dip.hmy2001.mcbeClient.utils.*;
 
-import javax.xml.bind.DatatypeConverter;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Base64;

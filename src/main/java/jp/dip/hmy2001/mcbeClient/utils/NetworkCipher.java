@@ -6,7 +6,6 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.util.Arrays;
-import java.util.Base64;
 
 public class NetworkCipher {
     private byte[] sharedKey;

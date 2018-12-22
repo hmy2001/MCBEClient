@@ -9,7 +9,6 @@ import java.io.DataInputStream;
 import java.net.InetAddress;
 import java.security.*;
 import javax.crypto.*;
-import javax.xml.bind.DatatypeConverter;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
