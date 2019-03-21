@@ -44,7 +44,7 @@ public class ClientListener implements RakNetClientListener{
         CommandReader.getInstance().unstashLine();
 
         LoginPacket loginPacket = new LoginPacket();
-        loginPacket.protocol = 313;//1.8.0
+        loginPacket.protocol = 340;//1.10.0
 
         HugeChainData hugeChainData = new HugeChainData();
         hugeChainData.chain = new String[]{client.createJwt(createChainData())};
@@ -175,11 +175,6 @@ public class ClientListener implements RakNetClientListener{
                         RequestChunkRadiusPacket sendPk = new RequestChunkRadiusPacket();
                         sendPk.radius = 8;
                         sendBatchPacket(session, sendPk);
-                    break;}
-                    case ProtocolInfo.INVENTORY_CONTENT_PACKET:{
-                        InventoryContentPacket receivePk = new InventoryContentPacket();
-                        receivePk.setBuffer(pk);
-                        receivePk.decode();
                     break;}
                     case ProtocolInfo.CLIENTBOUND_MAP_ITEM_DATA_PACKET:{
                         ClientboundMapItemDataPacket receivePk = new ClientboundMapItemDataPacket();
