@@ -3,7 +3,6 @@ package jp.dip.hmy2001.mcbeClient.network.mcbe.protocol;
 import jp.dip.hmy2001.mcbeClient.network.mcbe.GamePacket;
 
 public class ClientboundMapItemDataPacket extends GamePacket {
-    final byte NETWORK_ID = ProtocolInfo.CLIENTBOUND_MAP_ITEM_DATA_PACKET;
 
     public int mapId;
     public int type;
@@ -12,7 +11,7 @@ public class ClientboundMapItemDataPacket extends GamePacket {
     public int[][] colors;
 
     public byte getPacketId() {
-        return NETWORK_ID;
+        return ProtocolInfo.CLIENTBOUND_MAP_ITEM_DATA_PACKET;
     }
 
     public void decodeBody(){

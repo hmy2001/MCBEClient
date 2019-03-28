@@ -31,7 +31,7 @@ public class MyProperties {
         String s;
         while ((s = br.readLine()) != null) {
             if (s.charAt(0) != '/') {
-                String ss[] = s.split("=", 2);
+                String[] ss = s.split("=", 2);
                 keyList.add(ss[0]);
                 valList.add(ss[1]);
             }

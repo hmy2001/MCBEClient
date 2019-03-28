@@ -3,7 +3,6 @@ package jp.dip.hmy2001.mcbeClient.network.mcbe.protocol;
 import jp.dip.hmy2001.mcbeClient.network.mcbe.GamePacket;
 
 public class StartGamePacket extends GamePacket {
-    final byte NETWORK_ID = ProtocolInfo.START_GAME_PACKET;
 
     public int entityUniqueId;
     public int entityRuntimeId;
@@ -13,7 +12,7 @@ public class StartGamePacket extends GamePacket {
     public float playerZ;
 
     public byte getPacketId() {
-        return NETWORK_ID;
+        return ProtocolInfo.START_GAME_PACKET;
     }
 
     public void decodeBody(){

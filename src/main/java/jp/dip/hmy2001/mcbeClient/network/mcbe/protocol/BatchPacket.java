@@ -6,13 +6,12 @@ import java.util.Arrays;
 import java.util.zip.*;
 
 public class BatchPacket extends GamePacket {
-    final byte NETWORK_ID = ProtocolInfo.BATCH_PACKET;
 
     public byte[] payload;
-    public boolean isEncryption = false;
+    public boolean isEncryption = false;//TODO: remove it
 
     public byte getPacketId() {
-        return NETWORK_ID;
+        return ProtocolInfo.BATCH_PACKET;
     }
 
     public void encode(){

@@ -12,7 +12,7 @@ public class Main {
     private final MCBEClient mcbeClient;
     private static final Log logger = LogFactory.getLog("Main Logger");
 
-    public static void main(String args[]){
+    public static void main(String[] args){
         new Main();
     }
 

@@ -3,7 +3,6 @@ package jp.dip.hmy2001.mcbeClient.network.mcbe.protocol;
 import jp.dip.hmy2001.mcbeClient.network.mcbe.GamePacket;
 
 public class LoginPacket extends GamePacket{
-    byte NETWORK_ID = ProtocolInfo.LOGIN_PACKET;
 
     public int protocol;
     public int bodyLength;
@@ -13,7 +12,7 @@ public class LoginPacket extends GamePacket{
     public byte[] clientData;
 
     public byte getPacketId() {
-        return NETWORK_ID;
+        return ProtocolInfo.LOGIN_PACKET;
     }
 
     public void encodeBody(){

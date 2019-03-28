@@ -3,10 +3,9 @@ package jp.dip.hmy2001.mcbeClient.network.mcbe;
 import jp.dip.hmy2001.mcbeClient.utils.BinaryStream;
 
 public class GamePacket extends BinaryStream {
-    final byte NETWORK_ID = (byte) 0xff;
 
     public byte getPacketId() {
-        return NETWORK_ID;
+        return (byte) 0xff;
     }
 
     public void encode(){
