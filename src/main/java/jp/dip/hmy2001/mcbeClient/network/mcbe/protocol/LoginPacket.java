@@ -5,11 +5,7 @@ import jp.dip.hmy2001.mcbeClient.network.mcbe.GamePacket;
 public class LoginPacket extends GamePacket{
 
     public int protocol;
-    public int bodyLength;
-    public int chainDataLength;
-    public byte[] chainData;
-    public int clientDataLength;
-    public byte[] clientData;
+    public byte[] body;
 
     public byte getPacketId() {
         return ProtocolInfo.LOGIN_PACKET;
@@ -17,11 +13,8 @@ public class LoginPacket extends GamePacket{
 
     public void encodeBody(){
         writeInt(protocol);
-        writeUnsignedVarInt(bodyLength);
-        writeIntLE(chainDataLength);
-        write(chainData);
-        writeIntLE(clientDataLength);
-        write(clientData);
+        writeUnsignedVarInt(body.length);
+        write(body);
     }
 
 }

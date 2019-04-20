@@ -43,21 +43,23 @@ public class ClientListener implements RakNetClientListener{
         System.out.println("Connected.");
         CommandReader.getInstance().unstashLine();
 
-        LoginPacket loginPacket = new LoginPacket();
-        loginPacket.protocol = 340;//1.10.0
-
         HugeChainData hugeChainData = new HugeChainData();
         hugeChainData.chain = new String[]{client.createJwt(createChainData())};
         Gson gson = new Gson();
         String json = gson.toJson(hugeChainData, HugeChainData.class);
         //System.out.println(json);
+        byte[] chainData = json.getBytes();
+        byte[] clientData = client.createJwt(createClientData()).getBytes();
 
-        loginPacket.chainData = json.getBytes();
-        loginPacket.chainDataLength = loginPacket.chainData.length;
-        loginPacket.clientData = client.createJwt(createClientData()).getBytes();
-        loginPacket.clientDataLength = loginPacket.clientData.length;
-        loginPacket.bodyLength = loginPacket.chainDataLength + loginPacket.clientDataLength + 8;//8 is LInt length.
+        BinaryStream body = new BinaryStream();
+        body.writeIntLE(chainData.length);
+        body.write(chainData);
+        body.writeIntLE(clientData.length);
+        body.write(clientData);
 
+        LoginPacket loginPacket = new LoginPacket();
+        loginPacket.protocol = 340;//1.10.0
+        loginPacket.body = body.array();
         sendBatchPacket(session, loginPacket);
     }
 
