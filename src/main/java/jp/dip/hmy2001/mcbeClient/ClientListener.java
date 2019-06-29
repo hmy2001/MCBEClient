@@ -11,6 +11,7 @@ import jp.dip.hmy2001.mcbeClient.network.mcbe.json.*;
 import jp.dip.hmy2001.mcbeClient.network.mcbe.protocol.*;
 import jp.dip.hmy2001.mcbeClient.utils.*;
 
+import javax.xml.bind.DatatypeConverter;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Base64;
@@ -58,7 +59,7 @@ public class ClientListener implements RakNetClientListener{
         body.write(clientData);
 
         LoginPacket loginPacket = new LoginPacket();
-        loginPacket.protocol = 340;//1.10.0
+        loginPacket.protocol = 354;//1.11.0
         loginPacket.body = body.array();
         sendBatchPacket(session, loginPacket);
     }
@@ -104,7 +105,8 @@ public class ClientListener implements RakNetClientListener{
                 byte[] pk = binaryStream.read(pkLen);
 
                 CommandReader.getInstance().stashLine();
-                //System.out.println("packetId: " + pk[0]);
+
+                //System.out.println("packetId: " + DatatypeConverter.printHexBinary(new byte[]{pk[0]}));
 
                 switch (pk[0]){
                     case ProtocolInfo.PLAY_STATUS_PACKET:{
