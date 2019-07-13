@@ -59,7 +59,7 @@ public class ClientListener implements RakNetClientListener{
         body.write(clientData);
 
         LoginPacket loginPacket = new LoginPacket();
-        loginPacket.protocol = 354;//1.11.0
+        loginPacket.protocol = 361;//1.12.0
         loginPacket.body = body.array();
         sendBatchPacket(session, loginPacket);
     }
@@ -106,7 +106,7 @@ public class ClientListener implements RakNetClientListener{
 
                 CommandReader.getInstance().stashLine();
 
-                //System.out.println("packetId: " + DatatypeConverter.printHexBinary(new byte[]{pk[0]}));
+                //System.out.println("packetId: 0x" + DatatypeConverter.printHexBinary(new byte[]{pk[0]}));
 
                 switch (pk[0]){
                     case ProtocolInfo.PLAY_STATUS_PACKET:{
@@ -195,6 +195,16 @@ public class ClientListener implements RakNetClientListener{
                         receivePk.setBuffer(pk);
                         receivePk.decode();
                     break;}
+                    case ProtocolInfo.LEVEL_EVENT_PACKET:{
+                        LevelEventPacket receivePk = new LevelEventPacket();
+                        receivePk.setBuffer(pk);
+                        receivePk.decode();
+                        break;}
+                    case ProtocolInfo.ENTITY_EVENT_PACKET:{
+                        EntityEventPacket receivePk = new EntityEventPacket();
+                        receivePk.setBuffer(pk);
+                        receivePk.decode();
+                        break;}
                 }
 
                 CommandReader.getInstance().unstashLine();

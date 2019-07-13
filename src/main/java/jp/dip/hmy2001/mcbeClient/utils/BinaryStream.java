@@ -12,7 +12,7 @@ public class BinaryStream extends Packet {
         return new String(read(readUnsignedVarInt()));
     }
 
-    public float readFloatLE() {
+    protected float readFloatLE() {
         ByteBuffer byteBuffer = ByteBuffer.allocate(4);
         byteBuffer.putFloat(readFloat());
         byteBuffer.flip();
@@ -21,7 +21,7 @@ public class BinaryStream extends Packet {
         return byteBuffer.getFloat();
     }
 
-    public void writeFloatLE(float value) {
+    protected void writeFloatLE(float value) {
         ByteBuffer byteBuffer = ByteBuffer.allocate(4);
         byteBuffer.putFloat(value);
         byteBuffer.flip();
@@ -29,7 +29,7 @@ public class BinaryStream extends Packet {
         write(byteBuffer.array());
     }
 
-    public void writeVarInt(int v){
+    protected void writeVarInt(int v){
         v = (v << 32 >> 32);
         writeUnsignedVarInt((v << 1) ^ (v >> 31));
     }
@@ -50,7 +50,7 @@ public class BinaryStream extends Packet {
         }
     }
 
-    public int readVarInt(){
+    protected int readVarInt(){
         int raw = readUnsignedVarInt();
         int temp = (((raw << 63) >> 63) ^ raw) >> 1;
         return temp ^ (raw & (1 << 63));
@@ -69,11 +69,11 @@ public class BinaryStream extends Packet {
         return value;
     }
 
-    public void writeVarLong(int v){
+    protected void writeVarLong(int v){
         writeUnsignedVarLong((v << 1) ^ (v >> 63));
     }
 
-    public void writeUnsignedVarLong(int value){
+    protected void writeUnsignedVarLong(int value){
         byte[] buf = new byte[10];
 
         for(int i = 0; i < 10; ++i){
@@ -88,13 +88,13 @@ public class BinaryStream extends Packet {
         }
     }
 
-    public int readVarLong(){
+    protected int readVarLong(){
         int raw = readUnsignedVarLong();
         int temp = (((raw << 63) >> 63) ^ raw) >> 1;
         return temp ^ (raw & (1 << 63));
     }
 
-    public int readUnsignedVarLong(){
+    protected int readUnsignedVarLong(){
         int value = 0;
         for(int i = 0; i <= 63; i += 7){
             byte b = readByte();
