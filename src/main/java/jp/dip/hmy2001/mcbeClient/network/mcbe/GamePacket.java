@@ -42,19 +42,65 @@ public class GamePacket extends BinaryStream {
 
         int nbtLen = readShortLE();
         byte[] nbt;
-
-        if(nbtLen > 0){
-            nbt = read(nbtLen);
+        if(nbtLen == 0xffff){
+            int c = readByte();
+            if(c == 1){
+                System.out.println("read NBT");
+            }
         }
 
-        //TODO
         for(int i = 0, canPlaceOn = readVarInt(); i < canPlaceOn; ++i){
-            readString();
+            read(readUnsignedVarInt());
         }
-
         //TODO
         for(int i = 0, canDestroy = readVarInt(); i < canDestroy; ++i){
-            readString();
+            read(readUnsignedVarInt());
+        }
+
+        if(id == 513){
+            readVarLong(); //"blocking tick" (ffs mojang)
+        }
+    }
+
+    public void getEntityMetadata(){
+        int count = readUnsignedVarInt();
+        for(int i = 0; i < count; ++i){
+            int key = readUnsignedVarInt();
+            int type = readUnsignedVarInt();
+
+            switch(type){
+                case 0:
+                    readByte();
+                    break;
+                case 1:
+                    readShortLE();
+                    break;
+                case 2:
+                    readVarInt();
+                    break;
+                case 3:
+                    readFloatLE();
+                    break;
+                case 4:
+                    read(readUnsignedVarInt());
+                    break;
+                case 5:
+                    readSlot();
+                    break;
+                case 6:
+                    readVarInt();
+                    readUnsignedVarInt();
+                    readVarInt();
+                    break;
+                case 7:
+                    readVarLong();
+                    break;
+                case 8:
+                    readFloatLE();
+                    readFloatLE();
+                    readFloatLE();
+                    break;
+            }
         }
     }
 

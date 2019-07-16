@@ -205,6 +205,11 @@ public class ClientListener implements RakNetClientListener{
                         receivePk.setBuffer(pk);
                         receivePk.decode();
                         break;}
+                    case ProtocolInfo.SET_ENTITY_DATA_PACKET:{
+                        SetEntityDataPacket receivePk = new SetEntityDataPacket();
+                        receivePk.setBuffer(pk);
+                        receivePk.decode();
+                        break;}
                 }
 
                 CommandReader.getInstance().unstashLine();
