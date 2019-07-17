@@ -210,6 +210,11 @@ public class ClientListener implements RakNetClientListener{
                         receivePk.setBuffer(pk);
                         receivePk.decode();
                         break;}
+                    case ProtocolInfo.SPAWN_PARTICLE_EFFECT_PACKET:{
+                        SpawnParticleEffectPacket receivePk = new SpawnParticleEffectPacket();
+                        receivePk.setBuffer(pk);
+                        receivePk.decode();
+                        break;}
                 }
 
                 CommandReader.getInstance().unstashLine();

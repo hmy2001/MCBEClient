@@ -59,11 +59,11 @@ public class BinaryStream extends Packet {
     public int readUnsignedVarInt() {
         int value = 0;
 
-        for(int i = 0; i <= 63; i += 7){
+        for(int i = 0; i <= 28; i += 7){
             byte b = readByte();
             value |= ((b & 0x7f) << i);
             if((b & 0x80) == 0){
-                return value;
+                return value;//TODO: check it
             }
         }
         return value;
@@ -100,7 +100,7 @@ public class BinaryStream extends Packet {
             byte b = readByte();
             value |= ((b & 0x7f) << i);
             if((b & 0x80) == 0){
-                return Integer.parseUnsignedInt(Integer.toUnsignedString(value));
+                return value;//TODO: check it
             }
         }
 
