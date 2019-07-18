@@ -17,7 +17,7 @@ public class SpawnParticleEffectPacket extends GamePacket {
 
     public void decodeBody(){
         dimensionId = readByte();
-        entityUniqueId = readVarLong();
+        entityUniqueId = readEntityUniqueId();
         x = readFloatLE();
         y = readFloatLE();
         z = readFloatLE();

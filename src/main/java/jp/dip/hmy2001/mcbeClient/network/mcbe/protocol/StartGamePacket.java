@@ -16,8 +16,8 @@ public class StartGamePacket extends GamePacket {
     }
 
     public void decodeBody(){
-        entityUniqueId = readVarLong();
-        entityRuntimeId = readUnsignedVarLong();
+        entityUniqueId = readEntityUniqueId();
+        entityRuntimeId = readEntityRuntimeId();
         gamemode = readUnsignedVarInt();//game mode
         playerX = readFloatLE();
         playerY = readFloatLE();

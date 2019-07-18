@@ -63,7 +63,7 @@ public class BinaryStream extends Packet {
             byte b = readByte();
             value |= ((b & 0x7f) << i);
             if((b & 0x80) == 0){
-                return value;//TODO: check it
+                return value;
             }
         }
         return value;
@@ -100,7 +100,7 @@ public class BinaryStream extends Packet {
             byte b = readByte();
             value |= ((b & 0x7f) << i);
             if((b & 0x80) == 0){
-                return value;//TODO: check it
+                return value;
             }
         }
 

@@ -18,7 +18,7 @@ public class MobEquipmentPacket extends GamePacket {
     }
 
     public void decodeBody(){
-        entityRuntimeId = readUnsignedVarLong();
+        entityRuntimeId = readEntityRuntimeId();
         readSlot();
         inventorySlot = readByte();
         hotbarSlot = readByte();

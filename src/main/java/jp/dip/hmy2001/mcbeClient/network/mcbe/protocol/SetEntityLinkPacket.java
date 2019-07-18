@@ -13,8 +13,8 @@ public class SetEntityLinkPacket extends GamePacket {
     }
 
     public void decodeBody(){
-        fromEntityUniqueId = readVarLong();
-        toEntityUniqueId = readVarLong();
+        fromEntityUniqueId = readEntityUniqueId();
+        toEntityUniqueId = readEntityUniqueId();
         type = readByte();
     }
 

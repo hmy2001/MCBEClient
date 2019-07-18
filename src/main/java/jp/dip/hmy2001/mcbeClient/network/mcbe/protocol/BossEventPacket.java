@@ -12,7 +12,7 @@ public class BossEventPacket extends GamePacket {
     }
 
     public void decodeBody(){
-        bossEntityUniqueId = readVarLong();
+        bossEntityUniqueId = readEntityUniqueId();
         eventType = readUnsignedVarInt();
         /*switch (eventType){
             case 0:
