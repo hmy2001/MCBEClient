@@ -4,7 +4,7 @@ import jp.dip.hmy2001.mcbeClient.network.mcbe.GamePacket;
 
 public class ClientboundMapItemDataPacket extends GamePacket {
 
-    public int mapId;
+    public long mapId;
     public int type;
     public int dimensionId;
     public int scale;

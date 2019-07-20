@@ -4,7 +4,7 @@ import jp.dip.hmy2001.mcbeClient.network.mcbe.GamePacket;
 
 public class MobEquipmentPacket extends GamePacket {
 
-    public int entityRuntimeId;
+    public long entityRuntimeId;
     public int inventorySlot;
     public int hotbarSlot;
     public int windowId;

@@ -24,8 +24,8 @@ public class ClientListener implements RakNetClientListener{
     private String username;
     private String clientUUID;
     private boolean isEncryption = false;
-    private int entityUniqueId;
-    private int entityRuntimeId;
+    private long entityUniqueId;
+    private long entityRuntimeId;
 
     public ClientListener(MCBEClient client, ClientSession clientSession, String username, String clientUUID){
         this.client = client;
@@ -212,6 +212,16 @@ public class ClientListener implements RakNetClientListener{
                         break;}
                     case ProtocolInfo.SPAWN_PARTICLE_EFFECT_PACKET:{
                         SpawnParticleEffectPacket receivePk = new SpawnParticleEffectPacket();
+                        receivePk.setBuffer(pk);
+                        receivePk.decode();
+                        break;}
+                    case ProtocolInfo.ADD_ENTITY_PACKET:{
+                        AddEntityPacket receivePk = new AddEntityPacket();
+                        receivePk.setBuffer(pk);
+                        receivePk.decode();
+                        break;}
+                    case ProtocolInfo.ADD_PLAYER_PACKET:{
+                        AddPlayerPacket receivePk = new AddPlayerPacket();
                         receivePk.setBuffer(pk);
                         receivePk.decode();
                         break;}

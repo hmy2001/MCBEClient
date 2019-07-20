@@ -4,7 +4,7 @@ import jp.dip.hmy2001.mcbeClient.network.mcbe.GamePacket;
 
 public class MovePlayerPacket extends GamePacket {
 
-    public int entityRuntimeId;
+    public long entityRuntimeId;
     public float playerX;
     public float playerY;
     public float playerZ;

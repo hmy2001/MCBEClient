@@ -69,11 +69,11 @@ public class BinaryStream extends Packet {
         return value;
     }
 
-    protected void writeVarLong(int v){
+    protected void writeVarLong(long v){
         writeUnsignedVarLong((v << 1) ^ (v >> 63));
     }
 
-    protected void writeUnsignedVarLong(int value){
+    protected void writeUnsignedVarLong(long value){
         byte[] buf = new byte[10];
 
         for(int i = 0; i < 10; ++i){
@@ -84,18 +84,18 @@ public class BinaryStream extends Packet {
                 write(Arrays.copyOf(buf, i + 1));
                 return;
             }
-            value = ((value >> 7) & (Integer.MAX_VALUE >> 6));
+            value = ((value >> 7) & (Long.MAX_VALUE >> 6));
         }
     }
 
-    protected int readVarLong(){
-        int raw = readUnsignedVarLong();
-        int temp = (((raw << 63) >> 63) ^ raw) >> 1;
+    protected long readVarLong(){
+        long raw = readUnsignedVarLong();
+        long temp = (((raw << 63) >> 63) ^ raw) >> 1;
         return temp ^ (raw & (1 << 63));
     }
 
-    protected int readUnsignedVarLong(){
-        int value = 0;
+    protected long readUnsignedVarLong(){
+        long value = 0;
         for(int i = 0; i <= 63; i += 7){
             byte b = readByte();
             value |= ((b & 0x7f) << i);

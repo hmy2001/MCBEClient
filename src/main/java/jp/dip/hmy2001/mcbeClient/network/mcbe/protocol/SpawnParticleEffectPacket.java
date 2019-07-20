@@ -5,7 +5,7 @@ import jp.dip.hmy2001.mcbeClient.network.mcbe.GamePacket;
 public class SpawnParticleEffectPacket extends GamePacket {
 
     public int dimensionId;
-    public int entityUniqueId;
+    public long entityUniqueId;
     public float x;
     public float y;
     public float z;

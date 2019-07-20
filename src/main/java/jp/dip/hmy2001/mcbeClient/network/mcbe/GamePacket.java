@@ -104,14 +104,12 @@ public class GamePacket extends BinaryStream {
         }
     }
 
-    public int readEntityUniqueId(){
-        int temp = readVarLong();
-        return temp;
+    public long readEntityUniqueId(){
+        return readVarLong();
     }
 
-    public int readEntityRuntimeId(){
-        int temp = readUnsignedVarLong();
-        return temp;
+    public long readEntityRuntimeId(){
+        return readUnsignedVarLong();
     }
 
 }

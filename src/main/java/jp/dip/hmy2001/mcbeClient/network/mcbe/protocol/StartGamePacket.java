@@ -4,8 +4,8 @@ import jp.dip.hmy2001.mcbeClient.network.mcbe.GamePacket;
 
 public class StartGamePacket extends GamePacket {
 
-    public int entityUniqueId;
-    public int entityRuntimeId;
+    public long entityUniqueId;
+    public long entityRuntimeId;
     public int gamemode;
     public float playerX;
     public float playerY;

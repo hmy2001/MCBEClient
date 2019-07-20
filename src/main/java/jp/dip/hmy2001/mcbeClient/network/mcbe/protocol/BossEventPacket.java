@@ -4,7 +4,7 @@ import jp.dip.hmy2001.mcbeClient.network.mcbe.GamePacket;
 
 public class BossEventPacket extends GamePacket {
 
-    public int bossEntityUniqueId;
+    public long bossEntityUniqueId;
     public int eventType;
 
     public byte getPacketId() {

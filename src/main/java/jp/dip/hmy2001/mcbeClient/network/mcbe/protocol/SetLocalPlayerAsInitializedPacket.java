@@ -4,7 +4,7 @@ import jp.dip.hmy2001.mcbeClient.network.mcbe.GamePacket;
 
 public class SetLocalPlayerAsInitializedPacket extends GamePacket {
 
-    public int entityRuntimeId;
+    public long entityRuntimeId;
 
     public byte getPacketId() {
         return ProtocolInfo.SET_LOCAL_PLAYER_AS_INITIALIZED_PACKET;
