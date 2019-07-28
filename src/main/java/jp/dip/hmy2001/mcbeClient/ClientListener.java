@@ -225,6 +225,11 @@ public class ClientListener implements RakNetClientListener{
                         receivePk.setBuffer(pk);
                         receivePk.decode();
                         break;}
+                    case ProtocolInfo.PLAY_SOUND_PACKET:{
+                        PlaySoundPacket receivePk = new PlaySoundPacket();
+                        receivePk.setBuffer(pk);
+                        receivePk.decode();
+                        break;}
                 }
 
                 CommandReader.getInstance().unstashLine();
