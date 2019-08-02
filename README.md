@@ -1,6 +1,6 @@
 # MCBEClient
 
-This software can connect to BDS, pmmp with offlinemode.
+This software can connect to BDS, pmmp with offline mode.
 
 ## How to use
 <!--
