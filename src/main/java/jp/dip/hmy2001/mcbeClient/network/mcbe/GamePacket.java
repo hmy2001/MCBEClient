@@ -35,14 +35,11 @@ public class GamePacket extends BinaryStream {
 
         int auxValue = readVarInt();
         int data = auxValue >> 8;
-        if(data == 0x7fff){
-            data = -1;
-        }
         int cnt = auxValue & 0xff;
 
         int nbtLen = readShortLE();
         byte[] nbt;
-        if(nbtLen == 0xffff){
+        if(nbtLen == -1){
             int c = readByte();
             if(c == 1){
                 System.out.println("read NBT");

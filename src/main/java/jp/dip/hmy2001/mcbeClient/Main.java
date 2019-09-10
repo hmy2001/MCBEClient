@@ -7,7 +7,6 @@ import org.apache.commons.logging.LogFactory;
 
 public class Main {
     private static Main instance = null;
-    private Config config;
     private final CommandReader console;
     private final MCBEClient mcbeClient;
     private static final Log logger = LogFactory.getLog("Main Logger");
@@ -25,7 +24,7 @@ public class Main {
 
         this.console = new CommandReader();
 
-        config = new Config();
+        Config config = new Config();
 
         this.console.removePromptLine();
         this.console.start();

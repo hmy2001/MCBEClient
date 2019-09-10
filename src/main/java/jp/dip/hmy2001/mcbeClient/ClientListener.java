@@ -66,9 +66,7 @@ public class ClientListener implements RakNetClientListener{
 
     @Override
     public void onDisconnect(RakNetServerSession session, String reason) {
-        CommandReader.getInstance().stashLine();
-        System.out.println("Disconnect.");
-        CommandReader.getInstance().unstashLine();
+        //clientSession.shutdown();
         //TODO: Finish software
     }
 
