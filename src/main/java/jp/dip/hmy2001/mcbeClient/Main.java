@@ -30,10 +30,7 @@ public class Main {
         this.console.start();
 
         mcbeClient = new MCBEClient(config.get("serverAddress"), Integer.parseInt(config.get("serverPort")), config.get("username"), config.get("clientUUID"));
-
-        CommandReader.getInstance().stashLine();
         logger.info("MCBEClient starting now....");
-        CommandReader.getInstance().unstashLine();
     }
 
     public void onCommand(String command) {

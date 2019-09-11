@@ -42,7 +42,10 @@ public class GamePacket extends BinaryStream {
         if(nbtLen == -1){
             int c = readByte();
             if(c == 1){
-                System.out.println("read NBT");
+                int tagType = readByte();
+                if(tagType != 0){
+                    System.out.println("read NBT");
+                }
             }
         }
 

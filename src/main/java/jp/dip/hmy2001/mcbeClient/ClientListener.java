@@ -33,9 +33,7 @@ public class ClientListener implements RakNetClientListener{
         this.username = username;
         this.clientUUID = clientUUID;
 
-        CommandReader.getInstance().stashLine();
         System.out.println("displayName: " + username);
-        CommandReader.getInstance().unstashLine();
     }
 
     @Override
