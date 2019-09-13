@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.regex.Pattern;
 import java.util.zip.Deflater;
+import java.util.zip.Inflater;
 
 public class ClientListener implements RakNetClientListener{
     private MCBEClient client;
@@ -72,29 +73,21 @@ public class ClientListener implements RakNetClientListener{
     public void handleMessage(RakNetServerSession session, RakNetPacket packet, int channel) {
         if(packet.array()[0] == ProtocolInfo.BATCH_PACKET){
             BatchPacket batchPacket = new BatchPacket();
-
-            if(isEncryption){
-                byte[] temporalData = new byte[packet.array().length - 1];
-                System.arraycopy(packet.array(), 1, temporalData, 0, packet.array().length - 1);
-
-                //System.out.println("receive encrypt: " + DatatypeConverter.printHexBinary(temporalData));
-                //System.out.println("receive: " + DatatypeConverter.printHexBinary(packet.array()));
-
-                byte[] payload = client.getNetworkCipher().decrypt(temporalData);
-                byte[] decryptPayload = new byte[payload.length + 1];
-                decryptPayload[0] = (byte) 0xfe;
-                System.arraycopy(payload, 0, decryptPayload, 1, payload.length);
-
-                //System.out.println("decryptPayload: " + DatatypeConverter.printHexBinary(decryptPayload));
-
-                batchPacket.setBuffer(decryptPayload);
-            }else{
-                batchPacket.setBuffer(packet.array());
-            }
+            batchPacket.setBuffer(packet.array());
             batchPacket.decode();
+            byte[] payload;
+            if(isEncryption){
+                payload = decompress(client.getNetworkCipher().decrypt(batchPacket.payload));
+            }else{
+                payload = decompress(batchPacket.payload);
+            }
+
+            //System.out.println("raw: " + DatatypeConverter.printHexBinary(batchPacket.array()));
+            //System.out.println("raw: " + DatatypeConverter.printHexBinary(batchPacket.payload));
+            //System.out.println("payload: " + DatatypeConverter.printHexBinary(payload));
 
             BinaryStream binaryStream = new BinaryStream();
-            binaryStream.setBuffer(batchPacket.payload);
+            binaryStream.setBuffer(payload);
 
             while (binaryStream.remaining() > 0){
                 int pkLen = binaryStream.readUnsignedVarInt();
@@ -242,23 +235,11 @@ public class ClientListener implements RakNetClientListener{
 
         BatchPacket batchPacket = new BatchPacket();
         if(isEncryption){
-            batchPacket.isEncryption = true;
-
-            byte[] output = new byte[100000];
-            Deflater compressor = new Deflater(Deflater.DEFLATED);
-            compressor.setInput(binaryStream.array());
-            compressor.finish();
-            int length = compressor.deflate(output);
-            compressor.end();
-
-            //System.out.println(DatatypeConverter.printHexBinary(Arrays.copyOf(output, length)));
-
-            batchPacket.payload = client.getNetworkCipher().encrypt(Arrays.copyOf(output, length));
+            batchPacket.payload = client.getNetworkCipher().encrypt(compress(binaryStream.array()));
         }else{
-            batchPacket.payload = binaryStream.array();
+            batchPacket.payload = compress(binaryStream.array());
         }
         batchPacket.encode();
-
         //System.out.println("batch: " + DatatypeConverter.printHexBinary(batchPacket.array()));
 
         session.sendMessage(Reliability.UNRELIABLE, batchPacket);
@@ -266,6 +247,34 @@ public class ClientListener implements RakNetClientListener{
         CommandReader.getInstance().stashLine();
         System.out.println("Sent!!!");
         CommandReader.getInstance().unstashLine();
+    }
+
+    private byte[] compress(byte[] payload){
+        Deflater compressor = new Deflater(Deflater.DEFLATED);
+        compressor.setInput(payload);
+        compressor.finish();
+        byte[] output = new byte[1024 * 1024 * 2];
+        int length = compressor.deflate(output);
+        compressor.end();
+
+        return Arrays.copyOf(output, length);
+    }
+
+    private byte[] decompress(byte[] payload){
+        Inflater decompressor = new Inflater();
+        decompressor.setInput(payload);
+
+        try{
+            byte[] output = new byte[1024 * 1024 * 2];
+            int length = decompressor.inflate(output);
+            decompressor.end();
+
+            return Arrays.copyOf(output, length);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return new byte[0];
     }
 
     private String createChainData(){

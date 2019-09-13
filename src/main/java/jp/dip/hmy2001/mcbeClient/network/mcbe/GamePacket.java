@@ -52,7 +52,6 @@ public class GamePacket extends BinaryStream {
         for(int i = 0, canPlaceOn = readVarInt(); i < canPlaceOn; ++i){
             read(readUnsignedVarInt());
         }
-        //TODO
         for(int i = 0, canDestroy = readVarInt(); i < canDestroy; ++i){
             read(readUnsignedVarInt());
         }

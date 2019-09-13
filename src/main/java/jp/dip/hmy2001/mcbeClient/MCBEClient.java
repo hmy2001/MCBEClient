@@ -76,7 +76,7 @@ public class MCBEClient {
         return Base64.getEncoder().encodeToString(publicKey.getEncoded());
     }
 
-    public void generateAESKey(String encodedServerPublicKey, String encodedServerToken){//TODO: Move to Chiper
+    public void generateAESKey(String encodedServerPublicKey, String encodedServerToken){
         try {
             X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(Base64.getDecoder().decode(encodedServerPublicKey));
             PublicKey serverPublicKey = KeyFactory.getInstance("EC").generatePublic(x509EncodedKeySpec);
