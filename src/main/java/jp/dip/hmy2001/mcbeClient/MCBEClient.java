@@ -109,7 +109,9 @@ public class MCBEClient {
     }
 
     private String createJwtHeader(){
-        JwtHeader jwtHeader = new JwtHeader("ES384", getEncodedPublicKey());
+        JwtHeader jwtHeader = new JwtHeader();
+        jwtHeader.alg = "ES384";
+        jwtHeader.x5u = getEncodedPublicKey();
 
         Gson gson = new Gson();
         String json = gson.toJson(jwtHeader, JwtHeader.class);
