@@ -2,10 +2,9 @@ package jp.dip.hmy2001.mcbeClient;
 
 import com.google.gson.Gson;
 import jp.dip.hmy2001.mcbeClient.network.mcbe.json.JwtHeader;
+import jp.dip.hmy2001.mcbeClient.utils.BinaryStream;
 import jp.dip.hmy2001.mcbeClient.utils.NetworkCipher;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.net.InetAddress;
 import java.security.*;
 import javax.crypto.*;
@@ -126,7 +125,7 @@ public class MCBEClient {
         return jwtBody + "." + signature;
     }
 
-    public String signature(byte[] signatureData){
+    private String signature(byte[] signatureData){
         try{
             Signature dsa = Signature.getInstance("SHA384withECDSA");
             dsa.initSign(privateKey, secureRandom);
@@ -137,20 +136,17 @@ public class MCBEClient {
             //System.out.println("derSignature");
             //System.out.println(DatatypeConverter.printHexBinary(derSignature));
 
-            DataInputStream derSignatureBuffer = new DataInputStream(new ByteArrayInputStream(derSignature));
-            derSignatureBuffer.readByte();//0x30
-            derSignatureBuffer.readByte();//len
-            derSignatureBuffer.readByte();//0x20
+            BinaryStream binaryStream = new BinaryStream();
+            binaryStream.setBuffer(derSignature);
+            binaryStream.read(3);//0x30 + len + 0x20
 
-            int leftLen = new Byte(derSignatureBuffer.readByte()).intValue();
-            byte[] leftData = new byte[leftLen];
-            int reallyLeftLen = derSignatureBuffer.read(leftData, 0, leftLen);
+            int leftLen = binaryStream.readByte() & 0xff;
+            byte[] leftData = binaryStream.read(leftLen);
 
-            derSignatureBuffer.readByte();//0x20
+            binaryStream.read(1);//0x20
 
-            int rightLen = new Byte(derSignatureBuffer.readByte()).intValue();
-            byte[] rightData = new byte[rightLen];
-            int reallyRightLen = derSignatureBuffer.read(rightData, 0, rightLen);
+            int rightLen = binaryStream.readByte() & 0xff;
+            byte[] rightData = binaryStream.read(rightLen);
 
             int leftDataOffset = 0;
             if(leftData[0] == 0x00 && leftData.length > 48){
