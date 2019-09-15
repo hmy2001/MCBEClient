@@ -14,8 +14,8 @@ public interface ProtocolInfo {
     byte SET_TIME_PACKET = (byte) 0x0a;
     byte START_GAME_PACKET = (byte) 0x0b;
     byte ADD_PLAYER_PACKET = (byte) 0x0c;
-    byte ADD_ENTITY_PACKET = (byte) 0x0d;
-    byte REMOVE_ENTITY_PACKET = (byte) 0x0e;
+    byte ADD_ACTOR_PACKET = (byte) 0x0d;
+    byte REMOVE_ACTOR_PACKET = (byte) 0x0e;
     byte ADD_ITEM_ENTITY_PACKET = (byte) 0x0f;
 
     byte TAKE_ITEM_ENTITY_PACKET = (byte) 0x11;
@@ -25,7 +25,7 @@ public interface ProtocolInfo {
     byte UPDATE_BLOCK_PACKET = (byte) 0x15;
     byte ADD_PAINTING_PACKET = (byte) 0x16;
     byte EXPLODE_PACKET = (byte) 0x17;
-    byte LEVEL_SOUND_EVENT_PACKET = (byte) 0x18;
+    byte LEVEL_SOUND_EVENT_PACKET_V1 = (byte) 0x18;
     byte LEVEL_EVENT_PACKET = (byte) 0x19;
     byte BLOCK_EVENT_PACKET = (byte) 0x1a;
     byte ENTITY_EVENT_PACKET = (byte) 0x1b;
@@ -118,8 +118,26 @@ public interface ProtocolInfo {
     byte UPDATE_SOFT_ENUM_PACKET = (byte) 0x72;
     byte NETWORK_STACK_LATENCY_PACKET = (byte) 0x73;
 
-    byte SCRIPT_CUSTOM_EVENT_PACKET = 0x75;
-    byte SPAWN_PARTICLE_EFFECT_PACKET = 0x76;
+    byte SCRIPT_CUSTOM_EVENT_PACKET = (byte) 0x75;
+    byte SPAWN_PARTICLE_EFFECT_PACKET = (byte) 0x76;
+    byte AVAILABLE_ACTOR_IDENTIFIERS_PACKET = (byte) 0x77;
+    byte LEVEL_SOUND_EVENT_PACKET_V2 = (byte) 0x78;
+    byte NETWORK_CHUNK_PUBLISHER_UPDATE_PACKET = (byte) 0x79;
+    byte BIOME_DEFINITION_LIST_PACKET = (byte) 0x7a;
+    byte LEVEL_SOUND_EVENT_PACKET = (byte) 0x7b;
+    byte LEVEL_EVENT_GENERIC_PACKET = (byte) 0x7c;
+    byte LECTERN_UPDATE_PACKET = (byte) 0x7d;
+    byte VIDEO_STREAM_CONNECT_PACKET = (byte) 0x7e;
+    byte ADD_ENTITY_PACKET = (byte) 0x7f;
+    byte REMOVE_ENTITY_PACKET = (byte) 0x80;
+    byte CLIENT_CACHE_STATUS_PACKET = (byte) 0x81;
+    byte ON_SCREEN_TEXTURE_ANIMATION_PACKET = (byte) 0x82;
+    byte MAP_CREATE_LOCKED_COPY_PACKET = (byte) 0x83;
+    byte STRUCTURE_TEMPLATE_DATA_EXPORT_REQUEST_PACKET = (byte) 0x84;
+    byte STRUCTURE_TEMPLATE_DATA_EXPORT_RESPONSE_PACKET = (byte) 0x85;
+    byte UPDATE_BLOCK_PROPERTIES_PACKET = (byte) 0x86;
+    byte CLIENT_CACHE_BLOB_STATUS_PACKET = (byte) 0x87;
+    byte CLIENT_CACHE_MISS_RESPONSE_PACKET = (byte) 0x88;
 
     byte BATCH_PACKET = (byte) 0xfe;
 
