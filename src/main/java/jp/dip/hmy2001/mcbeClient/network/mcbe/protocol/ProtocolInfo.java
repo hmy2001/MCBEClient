@@ -16,10 +16,10 @@ public interface ProtocolInfo {
     byte ADD_PLAYER_PACKET = (byte) 0x0c;
     byte ADD_ACTOR_PACKET = (byte) 0x0d;
     byte REMOVE_ACTOR_PACKET = (byte) 0x0e;
-    byte ADD_ITEM_ENTITY_PACKET = (byte) 0x0f;
+    byte ADD_ITEM_ACTOR_PACKET = (byte) 0x0f;
 
-    byte TAKE_ITEM_ENTITY_PACKET = (byte) 0x11;
-    byte MOVE_ENTITY_ABSOLUTE_PACKET = (byte) 0x12;
+    byte TAKE_ITEM_ACTOR_PACKET = (byte) 0x11;
+    byte MOVE_ACTOR_ABSOLUTE_PACKET = (byte) 0x12;
     byte MOVE_PLAYER_PACKET = (byte) 0x13;
     byte RIDER_JUMP_PACKET = (byte) 0x14;
     byte UPDATE_BLOCK_PACKET = (byte) 0x15;
@@ -28,7 +28,7 @@ public interface ProtocolInfo {
     byte LEVEL_SOUND_EVENT_PACKET_V1 = (byte) 0x18;
     byte LEVEL_EVENT_PACKET = (byte) 0x19;
     byte BLOCK_EVENT_PACKET = (byte) 0x1a;
-    byte ENTITY_EVENT_PACKET = (byte) 0x1b;
+    byte ACTOR_EVENT_PACKET = (byte) 0x1b;
     byte MOB_EFFECT_PACKET = (byte) 0x1c;
     byte UPDATE_ATTRIBUTES_PACKET = (byte) 0x1d;
     byte INVENTORY_TRANSACTION_PACKET = (byte) 0x1e;
@@ -36,13 +36,13 @@ public interface ProtocolInfo {
     byte MOB_ARMOR_EQUIPMENT_PACKET = (byte) 0x20;
     byte INTERACT_PACKET = (byte) 0x21;
     byte BLOCK_PICK_REQUEST_PACKET = (byte) 0x22;
-    byte ENTITY_PICK_REQUEST_PACKET = (byte) 0x23;
+    byte ACTOR_PICK_REQUEST_PACKET = (byte) 0x23;
     byte PLAYER_ACTION_PACKET = (byte) 0x24;
-    byte ENTITY_FALL_PACKET = (byte) 0x25;
+    byte ACTOR_FALL_PACKET = (byte) 0x25;
     byte HURT_ARMOR_PACKET = (byte) 0x26;
-    byte SET_ENTITY_DATA_PACKET = (byte) 0x27;
-    byte SET_ENTITY_MOTION_PACKET = (byte) 0x28;
-    byte SET_ENTITY_LINK_PACKET = (byte) 0x29;
+    byte SET_ACTOR_DATA_PACKET = (byte) 0x27;
+    byte SET_ACTOR_MOTION_PACKET = (byte) 0x28;
+    byte SET_ACTOR_LINK_PACKET = (byte) 0x29;
     byte SET_HEALTH_PACKET = (byte) 0x2a;
     byte SET_SPAWN_POSITION_PACKET = (byte) 0x2b;
     byte ANIMATE_PACKET = (byte) 0x2c;
@@ -57,7 +57,7 @@ public interface ProtocolInfo {
     byte CRAFTING_EVENT_PACKET = (byte) 0x35;
     byte GUI_DATA_PICK_ITEM_PACKET = (byte) 0x36;
     byte ADVENTURE_SETTINGS_PACKET = (byte) 0x37;
-    byte BLOCK_ENTITY_DATA_PACKET = (byte) 0x38;
+    byte BLOCK_ACTOR_DATA_PACKET = (byte) 0x38;
     byte PLAYER_INPUT_PACKET = (byte) 0x39;
     byte FULL_CHUNK_DATA_PACKET = (byte) 0x3a;
     byte SET_COMMANDS_ENABLED_PACKET = (byte) 0x3b;
@@ -112,7 +112,7 @@ public interface ProtocolInfo {
     byte SET_SCORE_PACKET = (byte) 0x6c;
     byte LAB_TABLE_PACKET = (byte) 0x6d;
     byte UPDATE_BLOCK_SYNCED_PACKET = (byte) 0x6e;
-    byte MOVE_ENTITY_DELTA_PACKET = (byte) 0x6f;
+    byte MOVE_ACTOR_DELTA_PACKET = (byte) 0x6f;
     byte SET_SCOREBOARD_IDENTITY_PACKET = (byte) 0x70;
     byte SET_LOCAL_PLAYER_AS_INITIALIZED_PACKET = (byte) 0x71;
     byte UPDATE_SOFT_ENUM_PACKET = (byte) 0x72;

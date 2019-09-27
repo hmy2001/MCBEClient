@@ -9,7 +9,7 @@ public class AddPlayerPacket extends GamePacket {
     public long entityRuntimeId;
 
     public byte getPacketId() {
-        return ProtocolInfo.ADD_ENTITY_PACKET;
+        return ProtocolInfo.ADD_PLAYER_PACKET;
     }
 
     public void decodeBody(){

@@ -11,7 +11,6 @@ import jp.dip.hmy2001.mcbeClient.network.mcbe.json.*;
 import jp.dip.hmy2001.mcbeClient.network.mcbe.protocol.*;
 import jp.dip.hmy2001.mcbeClient.utils.*;
 
-import javax.xml.bind.DatatypeConverter;
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.Base64;
@@ -189,13 +188,13 @@ public class ClientListener implements RakNetClientListener{
                         receivePk.setBuffer(pk);
                         receivePk.decode();
                         break;}
-                    case ProtocolInfo.ENTITY_EVENT_PACKET:{
-                        EntityEventPacket receivePk = new EntityEventPacket();
+                    case ProtocolInfo.ACTOR_EVENT_PACKET:{
+                        ActorEventPacket receivePk = new ActorEventPacket();
                         receivePk.setBuffer(pk);
                         receivePk.decode();
                         break;}
-                    case ProtocolInfo.SET_ENTITY_DATA_PACKET:{
-                        SetEntityDataPacket receivePk = new SetEntityDataPacket();
+                    case ProtocolInfo.SET_ACTOR_DATA_PACKET:{
+                        SetActorDataPacket receivePk = new SetActorDataPacket();
                         receivePk.setBuffer(pk);
                         receivePk.decode();
                         break;}
@@ -204,8 +203,8 @@ public class ClientListener implements RakNetClientListener{
                         receivePk.setBuffer(pk);
                         receivePk.decode();
                         break;}
-                    case ProtocolInfo.ADD_ENTITY_PACKET:{
-                        AddEntityPacket receivePk = new AddEntityPacket();
+                    case ProtocolInfo.ADD_ACTOR_PACKET:{
+                        AddActorPacket receivePk = new AddActorPacket();
                         receivePk.setBuffer(pk);
                         receivePk.decode();
                         break;}
